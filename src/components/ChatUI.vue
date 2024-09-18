@@ -30,7 +30,7 @@ function getAssessmentUrl() {
     // because it uses %20 instead of + for spaces
     // Qualtrics uses %20
     const queryString = qs.stringify({
-        Organization: body.value,
+        Organization: body.value.trim(),
     })
 
     return `${baseQualtricsUrl}?${queryString}`
