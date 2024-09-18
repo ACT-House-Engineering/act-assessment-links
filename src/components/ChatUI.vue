@@ -60,8 +60,8 @@ function copyAssessmentUrl() {
 
 function webShare() {
     shareApi.share({
-        title: 'Share Assessment',
-        text: 'Check out this Assessment',
+        title: 'ACT Assessment',
+        text: 'Take the ACT Assessment',
         url: assessmentUrl.value,
     })
 }
