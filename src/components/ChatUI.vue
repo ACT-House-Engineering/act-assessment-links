@@ -165,7 +165,9 @@ onMounted(() => {
                                                     opacity: Number(!hasAnyInput),
                                                 }"
                                             >
-                                                Type the name of the group you want to share the assessment with
+                                                Type the Project or Group Name for this assessment link.
+                                                <br><br>
+                                                This is how it will show up in Airtable and dash.act.house.
                                             </div>
                                             <template v-if="hasAnyInput">
                                                 <UButton
