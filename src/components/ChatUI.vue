@@ -138,7 +138,7 @@ onMounted(() => {
                                         opacity="0.5"
                                     />
                                     <div class="font-medium text-center">
-                                        PrefillPrompt
+                                        ACT Assessment Links
                                     </div>
                                     <a :href="promptUrl" target="_blank">
                                         <Icon

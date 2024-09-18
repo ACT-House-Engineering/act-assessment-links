@@ -5,7 +5,7 @@
         "heroicons",
         "nuxt",
         "Nuxt",
-        "prefillprompt",
+        "act-assessment-links",
         "vueuse"
     ],
     // Enable the ESlint flat config support
