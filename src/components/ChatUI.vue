@@ -194,8 +194,9 @@ onMounted(() => {
                                         </div>
                                         <div
                                             v-else
-                                            class="flex gap-2 text-xs text-center"
+                                            class="flex flex-col gap-2 text-xs text-center"
                                         >
+                                            <pre class="whitespace-pre-wrap break-all">{{ assessmentUrl }}</pre>
                                             <a :href="assessmentUrl" class="text-blue-500" target="_blank">
                                                 <button class="border border-blue-500 rounded px-2 py-1">Test Link</button>
                                             </a>
