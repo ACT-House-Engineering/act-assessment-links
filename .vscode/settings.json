@@ -1,11 +1,13 @@
 {
     "cSpell.words": [
+        "act-assessment-links",
         "antfu",
         "contenteditable",
         "heroicons",
         "nuxt",
         "Nuxt",
-        "act-assessment-links",
+        "qrcode",
+        "Qualtrics",
         "vueuse"
     ],
     // Enable the ESlint flat config support
