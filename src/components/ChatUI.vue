@@ -1,6 +1,7 @@
 <script setup type="ts">
 import { computed, onMounted, ref } from 'vue'
 import { useClipboard } from '@vueuse/core'
+import qs from 'qs'
 
 import { getSiteHost } from '~/lib/utils'
 
@@ -22,11 +23,17 @@ const defaultMockupRatio = 1.6
 const promptInput = ref(null)
 const body = ref('')
 
-function getPromptUrl() {
-    const host = window?.location?.host
-    const protocol = host?.includes('localhost') ? 'http' : 'https'
+const baseQualtricsUrl = 'https://acthouse.qualtrics.com/jfe/form/SV_diFXff98yhCdXsa'
 
-    return `${protocol}://${host}/api/prompt?q=${body.value}`
+function getPromptUrl() {
+    // We want to use the qs package instead of native URLSearchParams
+    // because it uses %20 instead of + for spaces
+    // Qualtrics uses %20
+    const queryString = qs.stringify({
+        Organization: body.value,
+    })
+
+    return `${baseQualtricsUrl}?${queryString}`
 }
 
 const hasAnyInput = computed(() => {
