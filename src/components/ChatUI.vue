@@ -20,12 +20,12 @@ const noKeyboard = true
 const defaultMockupWidth = 375
 const defaultMockupRatio = 1.6
 
-const promptInput = ref(null)
+const assessmentInput = ref(null)
 const body = ref('')
 
 const baseQualtricsUrl = 'https://acthouse.qualtrics.com/jfe/form/SV_diFXff98yhCdXsa'
 
-function getPromptUrl() {
+function getAssessmentUrl() {
     // We want to use the qs package instead of native URLSearchParams
     // because it uses %20 instead of + for spaces
     // Qualtrics uses %20
@@ -39,20 +39,20 @@ function getPromptUrl() {
 const hasAnyInput = computed(() => {
     return body.value?.trim().length > 0
 })
-const promptUrl = computed(() => {
-    return getPromptUrl()
+const assessmentUrl = computed(() => {
+    return getAssessmentUrl()
 })
 
-function copyPromptUrl() {
+function copyAssessmentUrl() {
     if (!process.client) {
         throw new Error('This function can only be called on the client side')
     }
 
-    copy(getPromptUrl())
+    copy(getAssessmentUrl())
 
     toast.add({
         title: 'Copied!',
-        description: 'The Prompt URL has been copied to your clipboard.',
+        description: 'The Assessment URL has been copied to your clipboard.',
         status: 'success',
         duration: 2000,
     })
@@ -60,9 +60,9 @@ function copyPromptUrl() {
 
 function webShare() {
     shareApi.share({
-        title: 'Share Prompt',
-        text: 'Check out this Prompt',
-        url: promptUrl.value,
+        title: 'Share Assessment',
+        text: 'Check out this Assessment',
+        url: assessmentUrl.value,
     })
 }
 
@@ -70,7 +70,7 @@ const shareMethods = [
     {
         name: 'Copy',
         icon: 'i-heroicons-link',
-        action: copyPromptUrl,
+        action: copyAssessmentUrl,
     },
     // {
     //     name: 'QR Code',
@@ -81,7 +81,7 @@ const shareMethods = [
 
 if (shareApi.isSupported) {
     shareMethods.push({
-        name: 'Prompt',
+        name: 'Assessment',
         icon: 'i-heroicons-arrow-up-on-square',
         action: webShare,
     })
@@ -90,9 +90,9 @@ if (shareApi.isSupported) {
 onMounted(() => {
     // nextTick(() => {
     //     // Auto focus on the content editable
-    //     if (promptInput.value) {
-    //         console.log('promptInput', promptInput.value.focus)
-    //     // this.$refs[promptInput].value.focus()
+    //     if (assessmentInput.value) {
+    //         console.log('assessmentInput', assessmentInput.value.focus)
+    //     // this.$refs[assessmentInput].value.focus()
     //     }
     // })
 })
@@ -147,7 +147,7 @@ onMounted(() => {
                                     <div class="font-medium text-center">
                                         ACT Assessment Links
                                     </div>
-                                    <a :href="promptUrl" target="_blank">
+                                    <a :href="assessmentUrl" target="_blank">
                                         <Icon
                                             name="heroicons-outline:pencil-alt"
                                             size="24"
@@ -165,7 +165,7 @@ onMounted(() => {
                                                     opacity: Number(!hasAnyInput),
                                                 }"
                                             >
-                                                Type a Prompt you want to share
+                                                Type the name of the group you want to share the assessment with
                                             </div>
                                             <template v-if="hasAnyInput">
                                                 <UButton
@@ -196,7 +196,7 @@ onMounted(() => {
                                             v-else
                                             class="flex gap-2 text-xs text-center"
                                         >
-                                            <a :href="promptUrl" class="text-blue-500" target="_blank">
+                                            <a :href="assessmentUrl" class="text-blue-500" target="_blank">
                                                 <button class="border border-blue-500 rounded px-2 py-1">Test Link</button>
                                             </a>
 
@@ -235,7 +235,7 @@ onMounted(() => {
                                         }"
                                     >
                                         <ContentEditable
-                                            ref="promptInput"
+                                            ref="assessmentInput"
                                             v-model="body"
                                             contenteditable
                                             autofocus
