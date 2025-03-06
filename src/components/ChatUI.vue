@@ -23,7 +23,7 @@ const defaultMockupRatio = 1.6
 const assessmentInput = ref(null)
 const body = ref('')
 
-const baseQualtricsUrl = 'https://acthouse.qualtrics.com/jfe/form/SV_diFXff98yhCdXsa'
+const baseAssessmentUrl = 'https://assessment.act.house'
 
 function getAssessmentUrl() {
     // We want to use the qs package instead of native URLSearchParams
@@ -33,7 +33,7 @@ function getAssessmentUrl() {
         Organization: body.value.trim(),
     })
 
-    return `${baseQualtricsUrl}?${queryString}`
+    return `${baseAssessmentUrl}?${queryString}`
 }
 
 const hasAnyInput = computed(() => {
